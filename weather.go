@@ -53,11 +53,13 @@ type DeviceCollection struct {
 // WifiStatus : Wifi status per Base station
 // RFStatus : Current radio status per module
 // Type : Module type :
-//  "NAMain" : for the base station
-//  "NAModule1" : for the outdoor module
-//  "NAModule4" : for the additionnal indoor module
-//  "NAModule3" : for the rain gauge module
-//  "NAModule2" : for the wind gauge module
+//
+//	"NAMain" : for the base station
+//	"NAModule1" : for the outdoor module
+//	"NAModule4" : for the additionnal indoor module
+//	"NAModule3" : for the rain gauge module
+//	"NAModule2" : for the wind gauge module
+//
 // DashboardData : Data collection from device sensors
 // DataType : List of available datas
 // LinkedModules : Associated modules (only for station)
@@ -209,6 +211,18 @@ func processHTTPResponse(resp *http.Response, err error, holder interface{}) err
 		//bytes, _ := ioutil.ReadAll(resp.Body)
 		return fmt.Errorf("Bad HTTP return code %d", resp.StatusCode)
 	}
+
+	//**************
+	//Export 'resp.Body' as debug info
+	/*
+		webanswer, err := io.ReadAll(resp.Body)
+		if err != nil {
+			fmt.Printf(err.Error())
+		}
+		fmt.Println("DEBUG:")
+		fmt.Println(string(webanswer))
+	*/
+	//**************
 
 	// Unmarshall response into given struct
 	if err = json.NewDecoder(resp.Body).Decode(holder); err != nil {
