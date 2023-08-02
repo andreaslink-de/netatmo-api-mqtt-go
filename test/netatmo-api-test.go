@@ -12,6 +12,19 @@ import (
 	netatmo "github.com/joshuabeny1999/netatmo-api-go/v2"
 )
 
+/*
+// Prepare with:
+go build test/netatmo-api-test.go
+
+// Generate Netatmo app data, create new netatmo.conf and enter params following sample.conf
+
+// Test via:
+go build test/netatmo-api-test.go -f test/netatmo.conf
+
+// Run compiled binary as command line call via e.g. cron:
+./netatmo-api-test -f test/netatmo.conf
+*/
+
 // Command line flag
 var fConfig = flag.String("f", "", "Configuration file")
 
